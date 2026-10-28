@@ -3,8 +3,9 @@
 Finds the resource bottleneck (RAM, CPU, disk, GPU, heat) behind a laggy Mac and the apps causing it.
 
 ```sh
-make                  # build ./resmon (or: go build -o resmon .)
+make                  # build ./resmon (or: go build -o resmon ./cmd/resmon)
 make install          # copy to ~/.local/bin (PREFIX=... or BINDIR=... to change)
+go install github.com/duluk/resource-monitor-mac/cmd/resmon@latest   # or install straight from GitHub
 ./resmon              # sample 15s, print the measurements, then a diagnosis
 sudo ./resmon         # same, with full detail for system processes (WindowServer, kernel_task, daemons)
 ./resmon -watch       # one line every 5s until Ctrl-C; flags swapping, CPU/GPU saturation, throttling, lag
