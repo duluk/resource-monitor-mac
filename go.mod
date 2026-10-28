@@ -1,3 +1,3 @@
-module resource-monitor-mac
+module github.com/duluk/resource-monitor-mac
 
 go 1.27
