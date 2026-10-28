@@ -2,7 +2,8 @@ BINARY  := resmon
 GO      ?= go
 PREFIX  ?= $(HOME)/.local
 BINDIR  ?= $(PREFIX)/bin
-SOURCES := $(filter-out %_test.go,$(wildcard *.go)) $(wildcard *.m) go.mod
+PKG     := ./cmd/resmon
+SOURCES := $(filter-out %_test.go,$(wildcard cmd/resmon/*.go)) $(wildcard cmd/resmon/*.m) go.mod
 
 # Extra flags for run targets, e.g. `make run ARGS="-d 30s -ai"`.
 ARGS ?=
@@ -14,7 +15,7 @@ all: build
 build: $(BINARY) ## Build ./resmon (default)
 
 $(BINARY): $(SOURCES)
-	$(GO) build -o $@ .
+	$(GO) build -o $@ $(PKG)
 
 test: ## Run unit tests
 	$(GO) test ./...
@@ -23,7 +24,7 @@ vet: ## Run go vet
 	$(GO) vet ./...
 
 fmt: ## Format the Go sources in place
-	gofmt -w *.go
+	gofmt -w cmd
 
 check: vet test ## Fail if anything is unformatted, then vet and test
 	@unformatted=$$(gofmt -l .); \
