@@ -1,0 +1,14 @@
+# Built binary
+/resmon
+
+# Go test/profiling artifacts
+*.test
+*.out
+*.prof
+
+# Local secrets (e.g. OPENAI_API_KEY)
+.env
+.env.*
+
+# macOS
+.DS_Store
